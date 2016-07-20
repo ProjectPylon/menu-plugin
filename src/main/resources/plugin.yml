@@ -1,0 +1,11 @@
+name: BukkitCommons
+version: 1.0-SNAPSHOT
+main: com.dummyc0m.pylon.datakit.bukkitcommons.BKPlugin
+author: Dummyc0m
+prefix: BukkitCommons
+depend: [DataKit]
+commands:
+   commons:
+     description: The BukkitCommons plugin
+     permission: bukkitcommons.command.commons
+     usage: Beep Beep Beep
