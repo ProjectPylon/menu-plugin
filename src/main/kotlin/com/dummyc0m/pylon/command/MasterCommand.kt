@@ -21,6 +21,9 @@ class MasterCommand(label: String, permission: String, playerRequired: Boolean) 
         if (args != null && args.size > 0) {
             val subCommand = searchCommand(args[0])
             subCommand?.processCommand(sender, shiftArgs(args))
+        } else {
+            val subCommand = searchCommand("help")
+            subCommand?.processCommand(sender, null)
         }
     }
 
