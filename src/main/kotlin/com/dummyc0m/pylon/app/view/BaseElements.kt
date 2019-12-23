@@ -130,7 +130,7 @@ class ItemElement(
             itemBuilder.damage = value
         }
 
-    var displayName: String
+    var displayName: String?
         get() = itemBuilder.displayName
         set(value) {
             itemBuilder.displayName = value

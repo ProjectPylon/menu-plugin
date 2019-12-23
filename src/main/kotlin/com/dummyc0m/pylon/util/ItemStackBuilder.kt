@@ -14,7 +14,7 @@ class ItemStackBuilder {
     var amount: Int = 1
     var damage: Short = 0
 
-    var displayName = "Item"
+    var displayName: String? = null
     var lore: MutableList<String> = ArrayList()
     var enchants: MutableList<Pair<Enchantment, Int>> = ArrayList()
     var flags: MutableList<ItemFlag> = ArrayList()
