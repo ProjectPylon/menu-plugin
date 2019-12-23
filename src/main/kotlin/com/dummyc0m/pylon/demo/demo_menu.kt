@@ -80,7 +80,7 @@ class DemoHome(app: AppRoot) : RootComponent(app) {
 class DemoChild(app: AppRoot, private val onClick: () -> Unit) : Component(app) {
     private val const = 1
 
-    override fun render(): ViewElement {
+    fun render(): ViewElement {
         return item {
             material = Material.ANVIL
             displayName = "$RESET${GOLD}increment parent counter"
