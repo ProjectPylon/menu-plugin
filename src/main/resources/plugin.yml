@@ -1,5 +1,5 @@
 name: PylonMenu
-version: 0.1.4
+version: 0.1.5
 main: com.dummyc0m.pylon.MenuPlugin
 author: Dummyc0m
 prefix: PylonMenu
