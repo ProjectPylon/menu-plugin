@@ -43,7 +43,7 @@ class ItemStackBuilder {
         flags = ArrayList()
     }
 
-    internal fun render(): ItemStack {
+    fun render(): ItemStack {
         val item = ItemStack(material, amount, damage)
         val itemMeta = item.itemMeta
         itemMeta.displayName = displayName
