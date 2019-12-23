@@ -1,6 +1,5 @@
 package com.dummyc0m.pylon.app.component
 
-import com.dummyc0m.pylon.MenuPlugin
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -15,7 +14,6 @@ class MutableProperty<C: Refreshable, T>(private var value: T): ReadWritePropert
 
     override fun setValue(thisRef: C, property: KProperty<*>, value: T) {
         this.value = value
-        MenuPlugin.logger.info("value set to $value")
         thisRef.refresh()
     }
 }
