@@ -18,7 +18,7 @@ class AppRoot(
         private val humanEntity: HumanEntity
 ) {
     internal lateinit var rootComponent: RootComponent
-    internal lateinit var currentView: MenuView
+    private lateinit var currentView: MenuView
 
     private val frame = AtomicInteger()
     private val refreshing = AtomicBoolean(true)
