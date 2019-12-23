@@ -1,11 +1,14 @@
-name: BukkitCommons
+name: PylonMenu
 version: 1.0-SNAPSHOT
-main: com.dummyc0m.pylon.datakit.bukkitcommons.BKPlugin
+main: com.dummyc0m.pylon.MenuPlugin
 author: Dummyc0m
-prefix: BukkitCommons
-depend: [DataKit]
+prefix: PylonMenu
 commands:
    commons:
-     description: The BukkitCommons plugin
-     permission: bukkitcommons.command.commons
+     description: A Menu plugin
+     permission: pylon.menu.commons
+     usage: Beep Beep Beep
+   menuplugin:
+     description: A Menu plugin
+     permission: pylon.menu.master
      usage: Beep Beep Beep
