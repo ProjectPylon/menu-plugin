@@ -112,7 +112,13 @@ class ItemElement(
         get() = _click
     private var _click: (type: ClickType, cursor: ItemStack) -> Unit = clickConstant
 
-    internal val itemBuilder = ItemStackBuilder()
+    internal var itemBuilder = ItemStackBuilder()
+
+    var item: ItemStackBuilder
+        get() = itemBuilder
+        set(value) {
+            itemBuilder = value
+        }
 
     var material: Material
         get() = itemBuilder.material

@@ -3,6 +3,7 @@ package com.dummyc0m.pylon.app.component
 import com.dummyc0m.pylon.app.Menu
 import com.dummyc0m.pylon.app.MenuView
 import com.dummyc0m.pylon.app.view.RootElement
+import com.dummyc0m.pylon.util.replaceWith
 import org.bukkit.Bukkit
 import org.bukkit.entity.HumanEntity
 import org.bukkit.plugin.java.JavaPlugin
@@ -42,13 +43,20 @@ class AppRoot(
                 || newRootElement.topSize != currentRootElement.topSize
     }
 
+    // assumes that new and old have the same size
     private fun patchCurrentView(newRootElement: RootElement) {
         val menu = Menu(plugin, humanEntity, newRootElement, frame, true)
         val rendered = menu.render()
         if (newRootElement.enableBottom) {
-            currentView.bottomInventory.contents = rendered.bottomInventory.contents
+            // replace each item
+            currentView.bottomInventory.replaceWith(rendered.bottomInventory)
+            // replaces entire contents
+            // currentView.bottomInventory.contents = rendered.bottomInventory.contents
         }
-        currentView.topInventory.contents = rendered.topInventory.contents
+        // replace each item
+        currentView.topInventory.replaceWith(rendered.topInventory)
+        // replaces entire contents
+        // currentView.topInventory.contents = rendered.topInventory.contents
 
         currentView.menu = menu
         if (currentView.viewMeta.animationHandler.isEmpty() &&
