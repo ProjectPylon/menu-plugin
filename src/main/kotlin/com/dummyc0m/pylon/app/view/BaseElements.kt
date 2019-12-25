@@ -182,14 +182,18 @@ class ItemElement(
     }
 
     override fun render(menuView: MenuView, offsetX: Int, offsetY: Int) {
-        if (y < menuView.menu.root.topSize || menuView.menu.root.enableBottom) {
+        val newX = x + offsetX
+        val newY = y + offsetY
+        if ((newY < menuView.menu.root.topSize || menuView.menu.root.enableBottom) && newX < 9) {
+            // remove existing handlers at this spot
+            menuView.viewMeta.clear(newX, newY)
             if (_click !== clickConstant) {
-                menuView.viewMeta.click(x + offsetX, y + offsetY, this)
+                menuView.viewMeta.click(newX, newY, this)
             }
             if (_tick !== tickConstant) {
-                menuView.viewMeta.animate(x + offsetX, y + offsetY, this)
+                menuView.viewMeta.animate(newX, newY, this)
             }
-            menuView.setItem(x + offsetX, y + offsetY, itemBuilder.render())
+            menuView.setItem(newX, newY, itemBuilder.render())
         }
     }
 

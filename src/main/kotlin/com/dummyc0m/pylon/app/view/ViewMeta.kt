@@ -22,4 +22,9 @@ internal class ViewMeta {
     internal fun animate(x: Int, y: Int, animatedItemElement: ItemElement) {
         tickList.add(Pair(x + y * 9, animatedItemElement))
     }
+
+    internal fun clear(x: Int, y: Int) {
+        tickList.removeIf { (idx, _) -> idx == (x + y * 9) }
+        clickMap.remove(x + y * 9)
+    }
 }

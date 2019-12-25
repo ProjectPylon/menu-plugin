@@ -6,7 +6,6 @@ import com.dummyc0m.pylon.app.view.RootElement
 import org.bukkit.Bukkit
 import org.bukkit.entity.HumanEntity
 import org.bukkit.plugin.java.JavaPlugin
-import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -21,11 +20,9 @@ class AppRoot(
     private lateinit var currentView: MenuView
 
     private val frame = AtomicInteger()
-    private val refreshing = AtomicBoolean(true)
 
     internal fun show() {
         Bukkit.getScheduler().runTask(plugin) {
-            refreshing.set(false)
             val rendered = Menu(plugin, humanEntity, rootComponent.render(), frame, false).render()
             currentView = rendered
             humanEntity.openInventory(
@@ -66,27 +63,18 @@ class AppRoot(
     }
 
     internal fun refresh(suppressOpen: Boolean = true) {
-        if (refreshing.compareAndSet(false, true)) {
-            Bukkit.getScheduler().runTask(plugin) {
-                synchronized(refreshing) {
-                    refreshing.set(false)
-                    val newRootElement = rootComponent.render()
-                    if (requireRerender(newRootElement)) {
-                        currentView.rerendering = true
-                        humanEntity.closeInventory()
-                        val rendered = Menu(plugin, humanEntity, newRootElement, frame, suppressOpen).render()
-                        currentView = rendered
-                        humanEntity.openInventory(
-                                rendered
-                        )
-                        currentView.animate()
-                    } else {
-                        patchCurrentView(newRootElement)
-                    }
-                }
-            }
+        val newRootElement = rootComponent.render()
+        if (requireRerender(newRootElement)) {
+            currentView.rerendering = true
+            humanEntity.closeInventory()
+            val rendered = Menu(plugin, humanEntity, newRootElement, frame, suppressOpen).render()
+            currentView = rendered
+            humanEntity.openInventory(
+                    rendered
+            )
+            currentView.animate()
         } else {
-            // already refreshing
+            patchCurrentView(newRootElement)
         }
     }
 }
