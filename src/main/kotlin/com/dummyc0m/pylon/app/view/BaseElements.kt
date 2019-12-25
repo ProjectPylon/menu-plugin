@@ -114,10 +114,13 @@ class ItemElement(
 
     internal var itemBuilder = ItemStackBuilder()
 
+    /**
+     * clones the value get and set to the property
+     */
     var item: ItemStackBuilder
-        get() = itemBuilder
+        get() = itemBuilder.clone()
         set(value) {
-            itemBuilder = value
+            itemBuilder = value.clone()
         }
 
     var material: Material

@@ -13,6 +13,7 @@ class ItemStackBuilder {
     var material: Material = Material.AIR
     var amount: Int = 1
     var damage: Short = 0
+    var unbreakable: Boolean = false
 
     var displayName: String? = null
     var lore: MutableList<String> = ArrayList()
@@ -48,38 +49,24 @@ class ItemStackBuilder {
         val itemMeta = item.itemMeta
         itemMeta.displayName = displayName
         itemMeta.lore = lore
+        itemMeta.spigot().isUnbreakable = unbreakable
         enchants.forEach { pair -> itemMeta.addEnchant(pair.first, pair.second, true) }
         flags.forEach { flag -> itemMeta.addItemFlags(flag) }
         item.itemMeta = itemMeta
         return item
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as ItemStackBuilder
-
-        if (material != other.material) return false
-        if (amount != other.amount) return false
-        if (damage != other.damage) return false
-        if (displayName != other.displayName) return false
-        if (lore != other.lore) return false
-        if (enchants != other.enchants) return false
-        if (flags != other.flags) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = material.hashCode()
-        result = 31 * result + amount
-        result = 31 * result + damage
-        result = 31 * result + displayName.hashCode()
-        result = 31 * result + lore.hashCode()
-        result = 31 * result + enchants.hashCode()
-        result = 31 * result + flags.hashCode()
-        return result
+    fun clone(): ItemStackBuilder {
+        val cloned = ItemStackBuilder()
+        cloned.material = material
+        cloned.amount = amount
+        cloned.damage = damage
+        cloned.unbreakable = unbreakable
+        cloned.displayName = displayName
+        cloned.lore = lore.toMutableList()
+        cloned.enchants = enchants.toMutableList()
+        cloned.flags = flags.toMutableList()
+        return cloned
     }
 }
 
