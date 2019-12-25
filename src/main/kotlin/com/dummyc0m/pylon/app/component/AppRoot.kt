@@ -3,7 +3,6 @@ package com.dummyc0m.pylon.app.component
 import com.dummyc0m.pylon.app.Menu
 import com.dummyc0m.pylon.app.MenuView
 import com.dummyc0m.pylon.app.view.RootElement
-import com.dummyc0m.pylon.util.replaceWith
 import org.bukkit.Bukkit
 import org.bukkit.entity.HumanEntity
 import org.bukkit.plugin.java.JavaPlugin
@@ -49,14 +48,14 @@ class AppRoot(
         val rendered = menu.render()
         if (newRootElement.enableBottom) {
             // replace each item
-            currentView.bottomInventory.replaceWith(rendered.bottomInventory)
+//            currentView.bottomInventory.replaceWith(rendered.bottomInventory)
             // replaces entire contents
-            // currentView.bottomInventory.contents = rendered.bottomInventory.contents
+            currentView.bottomInventory.contents = rendered.bottomInventory.contents
         }
         // replace each item
-        currentView.topInventory.replaceWith(rendered.topInventory)
+//        currentView.topInventory.replaceWith(rendered.topInventory)
         // replaces entire contents
-        // currentView.topInventory.contents = rendered.topInventory.contents
+        currentView.topInventory.contents = rendered.topInventory.contents
 
         currentView.menu = menu
         if (currentView.viewMeta.animationHandler.isEmpty() &&

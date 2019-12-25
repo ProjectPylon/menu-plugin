@@ -13,7 +13,7 @@ fun InventoryView.getItem(x: Int, y: Int): ItemStack? {
 }
 
 fun Inventory.replaceWith(other: Inventory) {
-    for (i in 0..size) {
+    for (i in 0 until size) {
         val existingItem = getItem(i)
         val newItem = other.getItem(i)
         if (existingItem != newItem) {
